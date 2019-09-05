@@ -46,7 +46,7 @@ class SuperheroController extends Controller
     public function show(Superhero $superhero)
     {
         return view('superheroes.show', [
-            'superhero' =>$superhero
+            'superhero'=> $superhero
         ]);
     }
 
@@ -81,6 +81,7 @@ class SuperheroController extends Controller
      */
     public function destroy(Superhero $superhero)
     {
-        //
+        $superhero->delete();
+        return redirect()->route('superheroes.index');
     }
 }
