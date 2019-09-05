@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Superhero;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -20,13 +21,11 @@ class SuperheroController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('superheroes.create');
     }
 
     /**
@@ -37,7 +36,10 @@ class SuperheroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $superhero = new Superhero();
+
+        $superhero->create($request->all());
+        return redirect()->route('superheroes.index');
     }
 
     /**
@@ -52,10 +54,8 @@ class SuperheroController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Superhero  $superhero
-     * @return \Illuminate\Http\Response
+     * @param Superhero $superhero
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Superhero $superhero)
     {
@@ -63,11 +63,9 @@ class SuperheroController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Superhero  $superhero
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Superhero $superhero
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Superhero $superhero)
     {
