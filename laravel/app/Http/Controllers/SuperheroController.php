@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 class SuperheroController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Superhero $superheroes
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Superhero $superheroes)
     {
-        //
+        return view('superheroes.index', [
+            'superheroes' =>$superheroes->get()
+        ]);
     }
 
     /**
@@ -39,14 +40,14 @@ class SuperheroController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Superhero  $superhero
-     * @return \Illuminate\Http\Response
+     * @param Superhero $superhero
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Superhero $superhero)
     {
-        //
+        return view('superheroes.show', [
+            'superhero' =>$superhero
+        ]);
     }
 
     /**
