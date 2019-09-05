@@ -36,9 +36,9 @@ connect_db: # database command line
 	@docker-compose -f ${DOCKER_CONFIG} exec db bash
 
 
+
 database-dump: # dump database
 	@docker-compose -f ${DOCKER_CONFIG} exec db mysqldump ${DOCKER_DATABASE} -u${DOCKER_USERNAME} -p${DOCKER_PASSWORD}
-
 
 vendor: # composer install
 	@sudo docker-compose -f ${DOCKER_CONFIG} exec -u www -w /www/laravel app composer install
@@ -69,3 +69,20 @@ create_model: # create model name=[modelName]
 
 create_seeder: # create seeder name=[seederName]
 	@docker-compose -f ${DOCKER_CONFIG} exec -u www -w /www/laravel app php artisan make:seeder $(name)TableSeeder
+
+routes: # routes list
+	@sudo docker-compose -f ${DOCKER_CONFIG} exec -u www -w /www/laravel app php artisan route:list
+
+storage_link: # link images
+	@docker-compose -f ${DOCKER_CONFIG} exec -u www -w /www/laravel app php artisan storage:link
+
+create_middleware: # create middleware name=[middlewareName]
+	@docker-compose -f ${DOCKER_CONFIG} exec -u www -w /www/laravel php artisan make:middleware $(name)Middleware
+
+
+
+tinker: # tinker
+	@docker-compose -f ${DOCKER_CONFIG} exec -u www -w /www/laravel app php artisan tinker
+
+dump_server: # dump_server
+	@docker-compose -f ${DOCKER_CONFIG} exec -u www -w /www/laravel app php artisan dump-server
