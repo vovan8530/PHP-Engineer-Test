@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Superhero extends Model
 {
@@ -15,5 +17,7 @@ class Superhero extends Model
         "superpowers",
         "catch_phrase",
     ];
+
+
 
 }

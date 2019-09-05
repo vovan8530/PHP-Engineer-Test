@@ -14,7 +14,7 @@ class SuperheroController extends Controller
     public function index(Superhero $superheroes)
     {
         return view('superheroes.index', [
-            'superheroes' =>$superheroes->get()
+            'superheroes' =>$superheroes->paginate()
         ]);
     }
 
@@ -74,10 +74,9 @@ class SuperheroController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Superhero  $superhero
-     * @return \Illuminate\Http\Response
+     * @param Superhero $superhero
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Superhero $superhero)
     {

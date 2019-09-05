@@ -32,5 +32,8 @@
                 </div>
             @endforeach
         </div>
+        <div class="row">
+            {{$superheroes->links()}}
+        </div>
     </div>
 @endsection
