@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Superhero;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SuperheroController extends Controller
 {
@@ -14,7 +15,7 @@ class SuperheroController extends Controller
     public function index(Superhero $superheroes)
     {
         return view('superheroes.index', [
-            'superheroes' =>$superheroes->paginate()
+            'superheroes' =>$superheroes->paginate(5)
         ]);
     }
 
@@ -58,7 +59,7 @@ class SuperheroController extends Controller
      */
     public function edit(Superhero $superhero)
     {
-        //
+        return view('superheroes.edit', ['superhero' => $superhero]);
     }
 
     /**
@@ -70,7 +71,8 @@ class SuperheroController extends Controller
      */
     public function update(Request $request, Superhero $superhero)
     {
-        //
+        $superhero->update($request->all());
+        return redirect()->route('superheroes.index');
     }
 
     /**

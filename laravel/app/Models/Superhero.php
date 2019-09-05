@@ -3,12 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class Superhero extends Model
 {
-    protected $perPage = 5;
 
     protected $fillable = [
         "nickname",
@@ -17,7 +15,5 @@ class Superhero extends Model
         "superpowers",
         "catch_phrase",
     ];
-
-
 
 }
