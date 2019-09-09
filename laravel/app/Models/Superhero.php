@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use \App\Models\Picture;
 
 class Superhero extends Model
 {
@@ -15,5 +15,18 @@ class Superhero extends Model
         "superpowers",
         "catch_phrase",
     ];
+
+    protected $with = [
+        'pictures'
+    ];
+
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
+    public function pictures(){
+        return $this->hasMany(Picture::class);
+    }
 
 }

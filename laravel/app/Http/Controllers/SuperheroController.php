@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Picture;
 use App\Models\Superhero;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -34,12 +35,16 @@ class SuperheroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Picture $picture)
     {
         $superhero = new Superhero();
-
         $superhero->create($request->all());
+
+        if($request->has('file')){
+            $picture->insertPicture($request->file('file'));
+        }
         return redirect()->route('superheroes.index');
+
     }
 
     /**

@@ -7,7 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Picture::class, function (Faker $faker) {
     return [
-        'path' =>$faker->imageUrl(),
-        'thumbnail' =>$faker->imageUrl($with=200, $height=200),
+        'superhero_id' =>1,
+        'path' =>$faker->imageUrl($with=200, $height=200),
+
     ];
 });

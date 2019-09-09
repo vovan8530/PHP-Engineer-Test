@@ -9,7 +9,7 @@
                         <a href="{{route('superheroes.index')}}"  class="btn btn-info">Back</a>
                     </div>
                 </div>
-                <form action="{{route('superheroes.store')}}" method="post">
+                <form action="{{route('superheroes.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group row">
@@ -57,7 +57,10 @@
                             @endif
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Select picture</label>
+                        <input  name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Create</button>
@@ -66,6 +69,7 @@
                 </form>
             </div>
         </div>
+
     </div>
 
 

@@ -43,8 +43,6 @@
                             <input type="text" class="form-control" name="catch_phrase" id="catch_phrase" value="{{$superhero->catch_phrase}}">
                         </div>
                     </div>
-
-
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Update</button>

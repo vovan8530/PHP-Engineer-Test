@@ -8,14 +8,18 @@ use Illuminate\Http\Request;
 class PictureController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Picture $pictures
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+
+    public function index(Request $request, Picture $pictures)
     {
-        //
+        return view('pictures.index',[
+            'pictures' => $pictures->get(),
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,18 +28,21 @@ class PictureController extends Controller
      */
     public function create()
     {
-        //
+        return view('pictures.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Picture $picture
+     * @param ImageConfig $config
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Picture $picture)
     {
-        //
+        if($request->has('file')){
+            $picture->insertPicture($request->file('file'));
+        }
+        return redirect()->route('pictures.create');
     }
 
     /**
