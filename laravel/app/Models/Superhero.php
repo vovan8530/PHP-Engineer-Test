@@ -16,17 +16,17 @@ class Superhero extends Model
         "catch_phrase",
     ];
 
-    protected $with = [
-        'pictures'
-    ];
+//    protected $with = [
+//        'pictures'
+//    ];
 
-    public function getRouteKeyName()
-    {
-        return 'id';
-    }
-
-    public function pictures(){
-        return $this->hasMany(Picture::class);
-    }
+//    public function getRouteKeyName()
+//    {
+//        return 'id';
+//    }
+//
+//    public function pictures(){
+//        return $this->hasMany(Picture::class);
+//    }
 
 }

@@ -17,6 +17,7 @@ class CreatePicturesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('superhero_id');
             $table->string('path');
+            $table->string('thumbnail');
 
             $table->timestamps();
 

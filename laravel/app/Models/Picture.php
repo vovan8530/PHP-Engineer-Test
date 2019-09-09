@@ -5,34 +5,49 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Superhero;
-
+use Illuminate\Http\UploadedFile;
+use Intervention\Image\ImageManager as Image;
 
 
 class Picture extends Model
 {
-    protected $with = [
-        'superhero'
-    ];
+//    protected $with = [
+//        'superhero'
+//    ];
 
-    const PICTURE_PATH="storage/images";
+    const PICTURE_URL="storage/images/";
+    const PICTURE_PATH="public/images/";
 
-    public function superhero(){
-        return $this->belongsTo(Superhero::class)->without('pictures');
-    }
+    const THUMBNAIL_URL="storage/thumbnail/";
+    const THUMBNAIL_PATH="public/thumbnail/";
 
-    protected $fillable=['path','superhero_id'];
+//    public function superhero(){
+//        return $this->belongsTo(Superhero::class)->without('pictures');
+//    }
+
+    protected $fillable=['path','thumbnail','superhero_id'];
 
     /**
      * @param $file
      * @param $superhero
      * @return bool
      */
-    public function insertPicture($file){
-        if($file->storeAs('public/images', $file->getClientOriginalName())){
+    public function insertPicture(UploadedFile $file){
+        if($file->storeAs(static::PICTURE_PATH, $file->getClientOriginalName())){
+
+            $fileName =$file->getClientOriginalName();
+
+            $image= new Image();
+            $imageData=$image->make(storage_path('app/'.self::PICTURE_PATH.$fileName));
+            $imageData->fit(300);
+            $imageData->save(storage_path('app/'.self::THUMBNAIL_PATH.$fileName));
+
             $this->create([
-                'path' => static::PICTURE_PATH.$file->getClientOriginalName(),
+                'path' => static::PICTURE_URL.$fileName,
+                'thumbnail' => static::THUMBNAIL_URL.$fileName,
                 'superhero_id' => 1,
             ]);
+
             return true;
         }
         return false;
