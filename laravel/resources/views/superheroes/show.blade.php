@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-
+    <div class="container">
     <div class="row ">
 
         <div class="col-12 my-2">
@@ -32,16 +32,15 @@
             <dt class="col-sm-3">Catch phrase</dt>
             <dd class="col-sm-9">{{ $superhero->catch_phrase }}</dd>
         </dl>
-
-
     </div>
-
-    <div class="row">
-
-{{--        @foreach($category->products as $product)--}}
-{{--            <div class="col-12"><a href="{{ route('products.show', ['id' => $product->id]) }}">{{ $product->name }}</a></div>--}}
-{{--        @endforeach--}}
-
+        <div class="row my-3">
+            @foreach($superhero->pictures as $picture)
+                <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3">
+                    <div class="card bg-dark text-white">
+                            <img src="{{$picture->thumbnail}}"class="card-img" >
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
-
 @endsection

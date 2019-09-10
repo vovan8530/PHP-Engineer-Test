@@ -14,7 +14,7 @@
             @foreach($superheroes as $superhero)
                 <div class="col-12">
                     <div class="card mb-3">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="{{$superhero->picture}}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">{{$superhero->nickname}}</h5>
                             <p class="card-text">{{$superhero->superpowers}}</p>

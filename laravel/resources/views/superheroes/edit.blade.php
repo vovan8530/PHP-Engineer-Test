@@ -9,6 +9,7 @@
                         <a href="{{route('superheroes.index')}}"  class="btn btn-info">Back</a>
                     </div>
                 </div>
+
                 <form action="{{route('superheroes.update',[$superhero->id])}}" method="post">
                     @method('PUT')
                     @csrf
@@ -46,6 +47,30 @@
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row my-3">
+                    @foreach($superhero->pictures as $picture)
+                        <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3">
+                            <div class="card bg-dark text-white">
+                                <img src="{{$picture->thumbnail}}" class="card-img">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <form action="{{route('pictures.store')}}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="superhero_id" value="{{$superhero->id or ''}}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Select picture</label>
+                        <input  name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Add picture</button>
                         </div>
                     </div>
                 </form>

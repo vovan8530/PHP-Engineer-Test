@@ -15,7 +15,7 @@
                     <a class="nav-link" href="{{ route('superheroes.index') }}">Superheroes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pictures.create') }}">Pictures</a>
+                    <a class="nav-link" href="{{ route('pictures.index') }}">Pictures</a>
                </li>
             </ul>
         </div>

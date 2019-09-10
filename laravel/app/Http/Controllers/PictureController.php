@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Picture;
+use App\Models\Superhero;
 use Illuminate\Http\Request;
 
 class PictureController extends Controller
@@ -16,7 +17,7 @@ class PictureController extends Controller
     public function index(Request $request, Picture $pictures)
     {
         return view('pictures.index',[
-            'pictures' => $pictures->get(),
+            'pictures' => $pictures->paginate(8),
         ]);
     }
 
@@ -39,10 +40,12 @@ class PictureController extends Controller
      */
     public function store(Request $request, Picture $picture)
     {
+
         if($request->has('file')){
-            $picture->insertPicture($request->file('file'));
+            $picture->insertPicture($request->file('file'),$request);
         }
-        return redirect()->route('pictures.create');
+        $picture->create($request->all());
+        return redirect()->route('pictures.index');
     }
 
     /**
@@ -87,6 +90,7 @@ class PictureController extends Controller
      */
     public function destroy(Picture $picture)
     {
-        //
+        $picture->delete();
+        return redirect()->route('pictures.index');
     }
 }

@@ -40,9 +40,7 @@ class SuperheroController extends Controller
         $superhero = new Superhero();
         $superhero->create($request->all());
 
-        if($request->has('file')){
-            $picture->insertPicture($request->file('file'));
-        }
+
         return redirect()->route('superheroes.index');
 
     }
@@ -53,6 +51,7 @@ class SuperheroController extends Controller
      */
     public function show(Superhero $superhero)
     {
+
         return view('superheroes.show', [
             'superhero'=> $superhero
         ]);
@@ -64,6 +63,7 @@ class SuperheroController extends Controller
      */
     public function edit(Superhero $superhero)
     {
+
         return view('superheroes.edit', ['superhero' => $superhero]);
     }
 
