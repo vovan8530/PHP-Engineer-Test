@@ -37,7 +37,7 @@
             @foreach($superhero->pictures as $picture)
                 <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3">
                     <div class="card bg-dark text-white">
-                            <img src="{{$picture->thumbnail}}"class="card-img" >
+                            <img src="\{{$picture->thumbnail}}"class="card-img" >
                     </div>
                 </div>
             @endforeach

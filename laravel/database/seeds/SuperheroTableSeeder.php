@@ -13,8 +13,8 @@ class SuperheroTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Superhero::class,40)->create()->map(function ($sup,$i){
-            factory(Picture::class,5)->create()->map(function ($picture) use($sup,$i){
+        factory(Superhero::class,10)->create()->map(function ($sup,$i){
+            factory(Picture::class,3)->create()->map(function ($picture) use($sup,$i){
                 $picture->superhero()->associate($sup)->save();
             });
         });;

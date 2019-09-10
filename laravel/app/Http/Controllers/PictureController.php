@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Picture;
 use App\Models\Superhero;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 class PictureController extends Controller
 {
+
+
     /**
      * @param Request $request
      * @param Picture $pictures
@@ -40,12 +43,10 @@ class PictureController extends Controller
      */
     public function store(Request $request, Picture $picture)
     {
-
         if($request->has('file')){
-            $picture->insertPicture($request->file('file'),$request);
+            $picture->insertPicture($request->file('file'));
         }
-        $picture->create($request->all());
-        return redirect()->route('pictures.index');
+        return redirect()->back();
     }
 
     /**
@@ -90,7 +91,7 @@ class PictureController extends Controller
      */
     public function destroy(Picture $picture)
     {
-        $picture->delete();
-        return redirect()->route('pictures.index');
+//        $picture->delete();
+//        return redirect()->route('pictures.index');
     }
 }

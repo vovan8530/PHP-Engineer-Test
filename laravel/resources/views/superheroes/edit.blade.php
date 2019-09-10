@@ -55,14 +55,14 @@
                     @foreach($superhero->pictures as $picture)
                         <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3">
                             <div class="card bg-dark text-white">
-                                <img src="{{$picture->thumbnail}}" class="card-img">
+                                <img src="\{{$picture->thumbnail}}" class="card-img">
                             </div>
                         </div>
                     @endforeach
                 </div>
 
                 <form action="{{route('pictures.store')}}" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="superhero_id" value="{{$superhero->id or ''}}">
+                    <input type="hidden" name="superhero_id" value="{{$superhero->id}}">
                     @csrf
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Select picture</label>

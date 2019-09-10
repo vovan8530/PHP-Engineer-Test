@@ -13,11 +13,8 @@ use Intervention\Image\ImageManager as Image;
 
 class Picture extends Model
 {
-    protected $guarded=[];
+//    protected $guarded=[];
 
-//    protected $with = [
-//        'superhero'
-//    ];
 
     const PICTURE_URL="storage/images/";
     const PICTURE_PATH="public/images/";
@@ -29,14 +26,14 @@ class Picture extends Model
         return $this->belongsTo('App\Models\Picture', 'superhero_id');
     }
 
-//    protected $fillable=['path','thumbnail','superhero_id'];
+    protected $fillable=['superhero_id','path','thumbnail'];
 
     /**
      * @param $file
      * @param $superhero
      * @return bool
      */
-    public function insertPicture(UploadedFile $file, $request){
+    public function insertPicture(UploadedFile $file){
         if($file->storeAs(static::PICTURE_PATH, $file->getClientOriginalName())){
 
             $fileName =$file->getClientOriginalName();
@@ -47,9 +44,10 @@ class Picture extends Model
             $imageData->save(storage_path('app/'.self::THUMBNAIL_PATH.$fileName));
 
             $this->create([
+                'superhero_id' =>$_POST['superhero_id'],
                 'path' => static::PICTURE_URL.$fileName,
                 'thumbnail' => static::THUMBNAIL_URL.$fileName,
-                'superhero_id' =>2,
+
             ]);
 
             return true;

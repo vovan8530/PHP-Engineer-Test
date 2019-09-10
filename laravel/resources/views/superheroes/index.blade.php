@@ -14,7 +14,9 @@
             @foreach($superheroes as $superhero)
                 <div class="col-12">
                     <div class="card mb-3">
-                        <img src="{{$superhero->picture}}" class="card-img-top">
+                        @if(isset($superhero->pictures[0]))
+                        <img src="\{{$superhero->pictures[0]->thumbnail}}" class="card-img-top col-4" width="300">
+                        @endif
                         <div class="card-body">
                             <h5 class="card-title">{{$superhero->nickname}}</h5>
                             <p class="card-text">{{$superhero->superpowers}}</p>
