@@ -6,6 +6,7 @@ use App\Models\Picture;
 use App\Models\Superhero;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class PictureController extends Controller
 {
@@ -84,14 +85,16 @@ class PictureController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Picture  $picture
-     * @return \Illuminate\Http\Response
+     * @param Picture $picture
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Picture $picture)
     {
-//        $picture->delete();
-//        return redirect()->route('pictures.index');
+        $picture->delete();
+        $picture_path= substr($picture->path,8);
+        $picture_thumbnail= substr($picture->thumbnail,8);
+        Storage::disk('public')->delete($picture_path,$picture_thumbnail);
+        return redirect()->back();
     }
 }

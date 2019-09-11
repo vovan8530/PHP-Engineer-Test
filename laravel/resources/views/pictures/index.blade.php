@@ -22,7 +22,7 @@
                 </div>
         @endforeach
         </div>
-        <div class="row my-3">
+        <div class="col my-3">
             {{$pictures->links()}}
         </div>
     </div>

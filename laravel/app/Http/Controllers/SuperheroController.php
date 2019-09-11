@@ -86,6 +86,6 @@ class SuperheroController extends Controller
     public function destroy(Superhero $superhero)
     {
         $superhero->delete();
-        return redirect()->route('superheroes.index');
+        return redirect()->back();
     }
 }
