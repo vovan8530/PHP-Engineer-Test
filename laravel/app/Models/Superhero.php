@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Superhero extends Model
 {
 
+
+
 //    protected $guarded=[];
 
     protected $fillable = [
