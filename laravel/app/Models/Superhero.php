@@ -7,11 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Superhero extends Model
 {
-
-
-
-//    protected $guarded=[];
-
     protected $fillable = [
         "nickname",
         "real_name",
@@ -19,7 +14,6 @@ class Superhero extends Model
         "superpowers",
         "catch_phrase",
     ];
-
 
     public function pictures(){
         return $this->hasMany('App\Models\Picture');

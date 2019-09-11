@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Picture;
 use App\Models\Superhero;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class SuperheroController extends Controller
@@ -86,6 +87,12 @@ class SuperheroController extends Controller
     public function destroy(Superhero $superhero)
     {
         $superhero->delete();
+        foreach ($superhero->pictures as $picture){
+            $picture->delete();
+            $picture_path= substr($picture->path,8);
+            $picture_thumbnail= substr($picture->thumbnail,8);
+            Storage::disk('public')->delete($picture_path,$picture_thumbnail);
+        }
         return redirect()->back();
     }
 }
