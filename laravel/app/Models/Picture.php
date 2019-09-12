@@ -3,18 +3,14 @@
 namespace App\Models;
 
 
-use http\Env\Request;
+
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Superhero;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Str;
 use Intervention\Image\ImageManager as Image;
 
 
 class Picture extends Model
 {
-//    protected $guarded=[];
-
 
     const PICTURE_URL="storage/images/";
     const PICTURE_PATH="public/images/";
@@ -22,15 +18,17 @@ class Picture extends Model
     const THUMBNAIL_URL="storage/thumbnail/";
     const THUMBNAIL_PATH="public/thumbnail/";
 
+    protected $fillable=['superhero_id','path','thumbnail'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function superhero(){
         return $this->belongsTo('App\Models\Picture', 'superhero_id');
     }
 
-    protected $fillable=['superhero_id','path','thumbnail'];
-
     /**
-     * @param $file
-     * @param $superhero
+     * @param UploadedFile $file
      * @return bool
      */
     public function insertPicture(UploadedFile $file){
@@ -40,7 +38,7 @@ class Picture extends Model
 
             $image= new Image();
             $imageData=$image->make(storage_path('app/'.self::PICTURE_PATH.$fileName));
-            $imageData->fit(300);
+            $imageData->fit(250);
             $imageData->save(storage_path('app/'.self::THUMBNAIL_PATH.$fileName));
 
             $this->create([
@@ -49,7 +47,6 @@ class Picture extends Model
                 'thumbnail' => static::THUMBNAIL_URL.$fileName,
 
             ]);
-
             return true;
         }
         return false;

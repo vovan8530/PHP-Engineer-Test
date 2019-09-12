@@ -15,6 +15,9 @@ class Superhero extends Model
         "catch_phrase",
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function pictures(){
         return $this->hasMany('App\Models\Picture');
     }

@@ -7,7 +7,7 @@ use App\Models\Picture;
 use App\Models\Superhero;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+
 
 class SuperheroController extends Controller
 {
@@ -31,16 +31,14 @@ class SuperheroController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Picture $picture
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, Picture $picture)
     {
         $superhero = new Superhero();
         $superhero->create($request->all());
-
 
         return redirect()->route('superheroes.index');
 

@@ -20,8 +20,6 @@ class CreatePicturesTable extends Migration
             $table->string('thumbnail')->default('');
 
             $table->timestamps();
-
-
         });
     }
 
