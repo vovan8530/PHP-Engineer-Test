@@ -41,7 +41,6 @@ class SuperheroController extends Controller
         $superhero->create($request->all());
 
         return redirect()->route('superheroes.index');
-
     }
 
     /**

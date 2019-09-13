@@ -73,12 +73,11 @@
                             <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </div>
-
-                    <div class="form-group" id="pictures">
+                </form>
+                    <div class="form-group">
                         <label for="exampleFormControlFile1">Select picture</label>
-                        <input  name="file[]" multiple="multiple"  type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <input  name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
                     </div>
-
                 </form>
             </div>
     </div>
